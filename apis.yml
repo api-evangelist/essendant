@@ -8,7 +8,7 @@ common:
     url: https://www.linkedin.com/company/essendant
   - type: Website
     url: https://www.essendant.com
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://essendant.com/llms.txt
 description: >-
   Essendant is a national wholesale distributor of workplace items, including business
