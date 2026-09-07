@@ -1,0 +1,18 @@
+generated: '2026-09-07'
+method: searched
+source: https://www.essendant.com/llms.txt
+limit_count: 0
+rate_limits: []
+headers: []
+note: >-
+  No rate limits are documented because no API is published. The only anonymously
+  reachable machine surfaces on Essendant hosts are the AD FS OpenID Connect discovery
+  documents, which returned no RateLimit-*, X-RateLimit-* or Retry-After headers on a live
+  fetch. Recorded as a true zero backed by a probe, not as an unexamined field.
+evidence:
+- url: https://sso.essendant.com/adfs/.well-known/openid-configuration
+  status: 200
+  note: no rate-limit response headers observed.
+- url: https://www.essendant.com/llms.txt
+  status: 200
+  note: complete public page index; no developer or limits documentation present.

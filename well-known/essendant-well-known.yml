@@ -1,0 +1,225 @@
+generated: '2026-09-07'
+method: probed
+source: live GET of the named /.well-known/ path list on every host this record knows
+note: >-
+  Essendant publishes no developer portal, but two of its identity hosts serve real,
+  parsing OpenID Connect discovery documents from an AD FS deployment. They sit at the
+  AD FS-rooted path /adfs/.well-known/openid-configuration; the server root
+  /.well-known/openid-configuration returns 503 on both hosts. These documents are the
+  SSO surface behind Essendant's reseller/customer portals (Solutions Central, Azerty,
+  BiggestBook, Empower Central) — they are NOT a public API authorization server, and
+  no client can self-register against them. Recorded because they are genuinely
+  published, machine-readable and anonymously fetchable, not because they constitute a
+  developer program.
+hosts:
+- host: https://www.essendant.com
+  path_echo_control: passed
+  hit_count: 0
+  note: >-
+    Cloudflare managed-challenge (403) on HTML routes; text/plain assets (robots.txt,
+    llms.txt) pass through and 404s are the real WordPress 404 page, so the negatives
+    below are true negatives, not challenge pages.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/api-catalog.json
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 403
+    note: Cloudflare managed challenge, not a document.
+  - path: /apis.yml
+    status: 403
+    note: Cloudflare managed challenge, not a document.
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/essendant-negative-control-7f3ab91c.json
+    status: 404
+    note: negative control — correctly 404s, so the 404s above are trustworthy.
+- host: https://sso.essendant.com
+  path_echo_control: passed
+  hit_count: 1
+  documents:
+  - path: /adfs/.well-known/openid-configuration
+    status: 200
+    file: essendant-sso-openid-configuration.json
+    content_type: application/json
+    note: >-
+      Real OIDC discovery document. issuer https://sso.essendant.com/adfs,
+      jwks_uri https://sso.essendant.com/adfs/discovery/keys.
+  - path: /.well-known/openid-configuration
+    status: 503
+  - path: /.well-known/security.txt
+    status: 503
+  - path: /.well-known/oauth-authorization-server
+    status: 503
+  - path: /adfs/.well-known/oauth-authorization-server
+    status: 503
+  - path: /.well-known/oauth-protected-resource
+    status: 503
+  - path: /.well-known/api-catalog
+    status: 503
+  - path: /.well-known/ai-plugin.json
+    status: 503
+  - path: /.well-known/ucp.json
+    status: 503
+  - path: /.well-known/acp.json
+    status: 503
+  - path: /.well-known/aauth-resource.json
+    status: 503
+  - path: /.well-known/apis.json
+    status: 503
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 503
+  - path: /.well-known/agent.json
+    status: 503
+  - path: /.well-known/essendant-negative-control-7f3ab91c.json
+    status: 503
+    note: negative control — 503, same as every other server-root path; the one 200 is at the /adfs/ root only.
+- host: https://login.essendant.com
+  path_echo_control: passed
+  hit_count: 1
+  documents:
+  - path: /adfs/.well-known/openid-configuration
+    status: 200
+    file: essendant-login-openid-configuration.json
+    content_type: application/json
+    note: >-
+      Real OIDC discovery document. issuer https://login.essendant.com/adfs,
+      jwks_uri https://login.essendant.com/adfs/discovery/keys.
+  - path: /.well-known/openid-configuration
+    status: 503
+  - path: /.well-known/security.txt
+    status: 503
+  - path: /.well-known/oauth-authorization-server
+    status: 503
+  - path: /adfs/.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 503
+  - path: /.well-known/api-catalog
+    status: 503
+  - path: /.well-known/ai-plugin.json
+    status: 503
+  - path: /.well-known/ucp.json
+    status: 503
+  - path: /.well-known/acp.json
+    status: 503
+  - path: /.well-known/aauth-resource.json
+    status: 503
+  - path: /.well-known/apis.json
+    status: 503
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 503
+  - path: /.well-known/agent.json
+    status: 503
+  - path: /.well-known/essendant-negative-control-7f3ab91c.json
+    status: 503
+- host: https://essendant.com
+  path_echo_control: inconclusive
+  hit_count: 0
+  note: >-
+    The apex is behind a different WAF than www (nginx + an sgcaptcha interstitial). Every
+    path — including the negative control — answers HTTP 202 with a ~200-byte meta-refresh
+    to /.well-known/sgcaptcha/. No document was served on any path; this is a wall, not a
+    surface. The apis.yml LlmsText pointer previously aimed here and recorded a false
+    negative for a file that is in fact served on www.
+  documents:
+  - path: /.well-known/security.txt
+    status: 202
+  - path: /.well-known/openid-configuration
+    status: 202
+  - path: /.well-known/oauth-authorization-server
+    status: 202
+  - path: /.well-known/oauth-protected-resource
+    status: 202
+  - path: /.well-known/api-catalog
+    status: 202
+  - path: /.well-known/ai-plugin.json
+    status: 202
+  - path: /.well-known/ucp.json
+    status: 202
+  - path: /.well-known/acp.json
+    status: 202
+  - path: /.well-known/aauth-resource.json
+    status: 202
+  - path: /.well-known/apis.json
+    status: 202
+  - path: /apis.json
+    status: 202
+  - path: /apis.yml
+    status: 202
+  - path: /.well-known/agent-card.json
+    status: 202
+  - path: /.well-known/agent.json
+    status: 202
+  - path: /.well-known/essendant-negative-control-7f3ab91c.json
+    status: 202
+    note: negative control FAILED to 404 — every apex path returns the same captcha interstitial.
+- host: https://www.biggestbook.com
+  path_echo_control: failed
+  hit_count: 0
+  note: >-
+    BiggestBook is named by Essendant's own site as one of its reseller portals. It is an
+    Angular single-page app whose server answers HTTP 200 with the identical 6,878-byte
+    app shell for EVERY path, including the negative control. No hit on this host can be
+    trusted and none is recorded.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: SPA shell (text/html, 6878 bytes) — not a document.
+  - path: /.well-known/openid-configuration
+    status: 200
+    note: SPA shell — not a document.
+  - path: /.well-known/api-catalog
+    status: 200
+    note: SPA shell — not a document.
+  - path: /.well-known/apis.json
+    status: 200
+    note: SPA shell — not a document.
+  - path: /apis.json
+    status: 200
+    note: SPA shell — not a document.
+  - path: /.well-known/agent-card.json
+    status: 200
+    note: SPA shell — not a document.
+  - path: /.well-known/agent.json
+    status: 200
+    note: SPA shell — not a document.
+  - path: /.well-known/essendant-negative-control-7f3ab91c.json
+    status: 200
+    note: negative control FAILED — identical 200 shell, so this host is a catch-all.
+excluded_hosts:
+- host: https://www.empowercentral.com
+  reason: >-
+    Considered and rejected. Essendant names a portal called "Empower Central", but the
+    registered domain empowercentral.com serves an unrelated business community site
+    ("More Customers | Private Community for Serious Business Owners"). Not an Essendant
+    host; not probed further.

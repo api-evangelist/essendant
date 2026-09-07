@@ -1,5 +1,36 @@
 name: Essendant
 aid: essendant
+description: 'Essendant is a national wholesale distributor and third-party logistics provider of workplace
+  products — business and office supplies, furniture, janitorial and breakroom (JanSan), foodservice,
+  industrial and automotive aftermarket items — operating a network of 35+ distribution centers carrying
+  49,000+ SKUs. Built on the United Stationers, Lagasse Sweet and Azerty brands and owned by Staples since
+  2019, it sells through independent resellers rather than direct to end users, and its Connected Commerce
+  and Fulfillment Services arms add marketplace access, retail drop-ship, B2C fulfillment and Amazon SFP/FBA
+  prep. Its integration surface is trading-partner EDI and the ECDB product-content feed rather than a
+  public API: no developer portal, OpenAPI, MCP server or agent card is published on any Essendant host.'
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/essendant.png
+url: https://raw.githubusercontent.com/api-evangelist/essendant/refs/heads/main/apis.yml
+tags:
+- Wholesale
+- Distribution
+- Supply Chain
+- Office Supplies
+- Fulfillment
+- 3PL
+- B2B
+- EDI
+- Ecommerce
+- JanSan
+- Foodservice
+created: '2026-05-01'
+modified: '2026-09-07'
+position: Consuming
+specificationVersion: '0.23'
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+- FN: APIs.json
+  email: info@apis.io
 deliveryModel:
   model: unknown
   open_source: false
@@ -11,7 +42,6 @@ deliveryModel:
   - none
   generated: '2026-08-28'
   method: derived
-specificationVersion: '0.23'
 accessModel:
   pricing: unknown
   onboarding: unknown
@@ -23,21 +53,40 @@ accessModel:
   source: []
   generated: '2026-07-22'
   method: derived
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/essendant.png
-url: 
-  https://raw.githubusercontent.com/api-evangelist/essendant/refs/heads/main/apis.yml
-modified: '2026-04-28'
 apis: []
 common:
-  - type: DomainSecurity
-    url: security/essendant-domain-security.yml
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/essendant
-  - type: Website
-    url: https://www.essendant.com
-  - type: LlmsText
-    url: https://essendant.com/llms.txt
-description: >-
-  Essendant is a national wholesale distributor of workplace items, including business
-  products, office furniture, janitorial and breakroom supplies, industrial supplies,
-  and automotive aftermarket products.
+- type: DomainSecurity
+  url: security/essendant-domain-security.yml
+- type: LinkedIn
+  url: https://www.linkedin.com/company/essendant
+- type: Website
+  url: https://www.essendant.com
+- type: LLMsTxt
+  url: llms/essendant-llms.txt
+- type: WellKnown
+  url: well-known/essendant-well-known.yml
+- type: Authentication
+  url: authentication/essendant-authentication.yml
+- type: OAuthScopes
+  url: scopes/essendant-scopes.yml
+- type: Conformance
+  url: conformance/essendant-conformance.yml
+- type: Plans
+  url: plans/essendant-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/essendant-rate-limits.yml
+- type: PrivacyPolicy
+  url: https://www.essendant.com/privacy-notice/
+- type: TermsOfService
+  url: https://www.essendant.com/essendant-terms-of-sale/
+- type: Support
+  url: https://www.essendant.com/faqs/
+- type: Login
+  url: https://www.essendant.com/for-existing-customers/
+- type: Blog
+  url: https://www.essendant.com/resources/
+x-enrichment:
+  date: '2026-09-07'
+  status: enriched
+  artifacts_added: 9
+  pass: local-v3

@@ -1,0 +1,64 @@
+generated: '2026-09-07'
+method: probed
+source: https://sso.essendant.com/adfs/.well-known/openid-configuration
+note: >-
+  These are the scopes advertised by Essendant's AD FS OpenID Connect discovery documents.
+  They are the AD FS default set — Essendant has not defined API-specific scopes, because
+  it publishes no API. No scopes/permissions reference page exists on essendant.com. Kept
+  as an honest record of what the discovery document actually advertises.
+schemes:
+- name: essendant-adfs-sso
+  source: well-known/essendant-sso-openid-configuration.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://sso.essendant.com/adfs/oauth2/authorize/
+    tokenUrl: https://sso.essendant.com/adfs/oauth2/token/
+  - flow: clientCredentials
+    tokenUrl: https://sso.essendant.com/adfs/oauth2/token/
+  - flow: deviceCode
+    deviceAuthorizationUrl: https://sso.essendant.com/adfs/oauth2/devicecode
+    tokenUrl: https://sso.essendant.com/adfs/oauth2/token/
+- name: essendant-adfs-login
+  source: well-known/essendant-login-openid-configuration.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://login.essendant.com/adfs/oauth2/authorize/
+    tokenUrl: https://login.essendant.com/adfs/oauth2/token/
+scopes:
+- scope: openid
+  description: OpenID Connect sign-in; issues an id_token.
+  flows: [authorizationCode]
+  sources: [well-known/essendant-sso-openid-configuration.json, well-known/essendant-login-openid-configuration.json]
+- scope: profile
+  description: Profile claims about the signed-in user.
+  flows: [authorizationCode]
+  sources: [well-known/essendant-sso-openid-configuration.json, well-known/essendant-login-openid-configuration.json]
+- scope: email
+  description: Email claim for the signed-in user.
+  flows: [authorizationCode]
+  sources: [well-known/essendant-sso-openid-configuration.json, well-known/essendant-login-openid-configuration.json]
+- scope: allatclaims
+  description: AD FS scope requesting that all claims be included in the access token.
+  flows: [authorizationCode]
+  sources: [well-known/essendant-sso-openid-configuration.json, well-known/essendant-login-openid-configuration.json]
+- scope: user_impersonation
+  description: AD FS delegation scope — act on behalf of the signed-in user.
+  flows: [authorizationCode]
+  sources: [well-known/essendant-sso-openid-configuration.json, well-known/essendant-login-openid-configuration.json]
+- scope: aza
+  description: AD FS broker/primary-refresh-token scope.
+  flows: [authorizationCode]
+  sources: [well-known/essendant-sso-openid-configuration.json, well-known/essendant-login-openid-configuration.json]
+- scope: logon_cert
+  description: AD FS scope for issuing a logon certificate.
+  flows: [authorizationCode]
+  sources: [well-known/essendant-sso-openid-configuration.json, well-known/essendant-login-openid-configuration.json]
+- scope: vpn_cert
+  description: AD FS scope for issuing a VPN certificate.
+  flows: [authorizationCode]
+  sources: [well-known/essendant-sso-openid-configuration.json, well-known/essendant-login-openid-configuration.json]
+- scope: winhello_cert
+  description: AD FS scope for issuing a Windows Hello for Business certificate.
+  flows: [authorizationCode]
+  sources: [well-known/essendant-sso-openid-configuration.json, well-known/essendant-login-openid-configuration.json]
+docs: null

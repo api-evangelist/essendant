@@ -1,12 +1,35 @@
-generated: '2026-07-11'
+generated: '2026-09-07'
 method: probed
-source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+source: >-
+  live DNS/TLS/HTTP probes of the apis.yml hosts plus the identity and campaign hosts found
+  during contract discovery (sso.essendant.com, login.essendant.com, info.essendant.com)
 hosts:
 - host: www.essendant.com
   https: true
   tls_version: TLSv1.3
-  cert_expires: Sep  9 06:04:29 2026 GMT
+  cert_expires: Nov  7 06:52:02 2026 GMT
   hsts: false
+- host: sso.essendant.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Oct 11 23:59:59 2026 GMT
+  hsts: false
+  note: AD FS identity host serving the OpenID Connect discovery document; negotiates TLS 1.2, not 1.3.
+- host: login.essendant.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Oct 11 23:59:59 2026 GMT
+  hsts: false
+  note: Second AD FS identity host; same posture as sso.
+- host: info.essendant.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 17 22:21:02 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+  note: >-
+    Campaign/landing host (ECDB documentation pages). The only Essendant host observed
+    sending HSTS.
 domains:
 - domain: essendant.com
   dnssec: false
@@ -14,3 +37,8 @@ domains:
   spf: true
   dmarc: true
   dmarc_policy: none
+findings:
+- No HSTS on the primary web host or on either identity host; only the campaign host sends it.
+- Both AD FS identity hosts terminate at TLS 1.2 while the marketing estate is on TLS 1.3.
+- No CAA records and no DNSSEC on essendant.com.
+- DMARC is published but the policy is p=none, so nothing is enforced against spoofed mail.

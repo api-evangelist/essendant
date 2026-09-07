@@ -1,0 +1,20 @@
+generated: '2026-09-07'
+method: searched
+source: https://www.essendant.com/llms.txt
+plan_count: 0
+plans: []
+note: >-
+  Essendant publishes no pricing tiers of any kind. It is a wholesale distributor and 3PL:
+  assortment pricing, catalog price plans (the ECDB "Price Plan" codes X1/X2/X3 seen at
+  https://info.essendant.com/ecdb-std) and fulfillment rates are negotiated per reseller
+  account through an account manager. Its own llms.txt site index — the complete list of
+  public pages — contains no pricing page; every commercial page is a "Get Started" lead
+  form (https://www.essendant.com/get-started/). There is no API and therefore no API
+  pricing. An honest zero, not an unchecked field.
+evidence:
+- url: https://www.essendant.com/llms.txt
+  status: 200
+  note: complete public page index; no pricing page present.
+- url: https://info.essendant.com/ecdb-std
+  status: 200
+  note: catalog price-plan CODES are published, the prices behind them are not.
