@@ -1,7 +1,9 @@
 ---
 title: Essendant Optimizes Its Supply Chain to Create a More ...
 url: https://www.dcvelocity.com/articles/58077-essendant-optimizes-its-supply-chain-to-create-a-more-streamlined-furniture-fulfillment-program
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Essendant" press release artificial intelligence'
 position: 3
 source: serpapi-google

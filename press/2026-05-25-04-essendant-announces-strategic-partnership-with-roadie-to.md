@@ -1,7 +1,9 @@
 ---
 title: Essendant Announces Strategic Partnership with Roadie to ...
 url: https://www.prnewswire.com/news-releases/essendant-announces-strategic-partnership-with-roadie-to-enhance-supply-chain-efficiency-and-last-mile-delivery-solutions-302479896.html
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Essendant" press release artificial intelligence'
 position: 4
 source: serpapi-google
